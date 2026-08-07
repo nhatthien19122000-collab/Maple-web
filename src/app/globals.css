@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+:root {
+  --color-paper: #ffffff;
+  --color-linen: #f4f2ee;
+  --color-stone: #706c65;
+  --color-ink: #121212;
+  --color-charcoal: #1d1d1d;
+  --color-wood: #9c6b3e;
+  --color-wood-dark: #7a5230;
+
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --surface: #ffffff;
+  --surface-muted: var(--color-linen);
+  --border-subtle: #e3e1db;
+  --accent: var(--color-wood);
+  --accent-foreground: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border-subtle: var(--border-subtle);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-paper: var(--color-paper);
+  --color-linen: var(--color-linen);
+  --color-stone: var(--color-stone);
+  --color-ink: var(--color-ink);
+  --color-charcoal: var(--color-charcoal);
+  --color-wood: var(--color-wood);
+  --color-wood-dark: var(--color-wood-dark);
+
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces);
+  --font-accent: var(--font-instrument);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-marquee: marquee 32s linear infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--color-border-subtle);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.container-fluid {
+  width: 100%;
+  max-width: 90rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .container-fluid {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-fluid {
+    padding-inline: 3rem;
+  }
+}
