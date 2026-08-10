@@ -310,13 +310,12 @@ topics were reused. Dictionary: `dict.process` (now has `includedTitle`,
 
 ## Known limitations to flag if asked
 
-- **Contact form on Vercel**: submits without error, but Vercel's filesystem is
-  ephemeral (serverless) — submissions in `src/lib/inquiries.ts` (writes to
-  `data/inquiries.json`) do NOT persist there. Works fine in local dev / on a
-  persistent Node host (e.g., Hostinger VPS, mentioned early on as an eventual target
-  but never actioned). Needs a real DB or email-forwarding integration before this
-  matters in production.
-- No git repo has been initialized. Client has NOT asked to push to GitHub.
+- **Git + GitHub**: this project now HAS a git repo, remoted to
+  `https://github.com/nhatthien19122000-collab/Maple-web` (client created the repo
+  themselves, 2026-08-07; I don't know exactly when local git was initialized —
+  discovered already-linked and in sync partway through a session). Commit and push
+  after every change the client confirms, same as the existing "always ask before
+  Vercel deploy" habit — see workflow notes below.
 - Blog post cover images and most page hero backgrounds (About, Capabilities,
   Quality, etc.) are still Picsum placeholders, not real client photos (Factory page
   hero is now real, see below).
@@ -393,6 +392,74 @@ automatically. Fixed by adding `--scope mapleweb` explicitly:
 `npx vercel --yes --prod --scope mapleweb`. If a future session hits the same
 "Not authorized" error on an otherwise-correctly-linked project, try this flag
 before assuming the account lost access.
+
+## ⚠️ TWO working copies exist — read this before running dev server / builds
+
+As of 2026-08-10, this environment's actual "primary working directory" (where the
+Browser preview tool's `preview_start` launches `next dev` from, per `.claude/launch.json`)
+is **`C:\Users\Dell Precision 5820\OneDrive - MAPLE FURNITURE\Claude\maple-furniture-web`**
+— a SEPARATE, ORIGINAL OneDrive copy, not `C:\dev\maple-furniture-web`. All actual
+editing in this and prior sessions has been done in `C:\dev\maple-furniture-web` (the
+relocated copy from the original node_modules-corruption incident, see below), and
+verified there via Bash + `curl`. The OneDrive copy sat untouched/stale since ~Jul 29
+and its `node_modules` was missing the `next` binary entirely (install never
+completed there, or was wiped by OneDrive's file-locking behavior).
+
+**Until this is properly consolidated, every session that needs the Browser preview
+tool must, after editing `C:\dev\maple-furniture-web`:**
+```
+robocopy "C:\dev\maple-furniture-web" "C:\Users\Dell Precision 5820\OneDrive - MAPLE FURNITURE\Claude\maple-furniture-web" /MIR /XD node_modules .next .vercel .git /XF *.log /NFL /NDL /NJH /NJS /NC /NS
+```
+(exit code 1 or 3 = success, robocopy's codes are a bitmask, not standard 0/nonzero)
+— then `npm install` there if `package.json`/`package-lock.json` changed (e.g. a new
+dependency like `nodemailer` was added) before calling `preview_start`. Forgetting
+this step means the Browser pane silently shows STALE content from before your
+edits — always re-check page content after a preview restart, don't assume freshness.
+
+**The actual git repo and Vercel deploys both operate on `C:\dev\maple-furniture-web`**
+— that copy is the real source of truth for what's live; the OneDrive copy exists
+only so the harness's Browser preview tool has something to launch. A future session
+should ideally figure out why `.claude/launch.json`'s primary directory doesn't point
+at `C:\dev\maple-furniture-web` and fix that properly instead of continuing this sync
+dance, but that wasn't investigated yet.
+
+## Git + email wiring (2026-08-10)
+
+- **Contact form now actually emails someone.** Previously `POST /api/inquiry` only
+  wrote to `data/inquiries.json` — harmless in local dev, but silently useless on
+  Vercel (ephemeral filesystem, nothing ever reached the CEO). Added
+  `src/lib/mailer.ts` (nodemailer over Office 365 SMTP) and wired it into
+  `src/app/api/inquiry/route.ts`; if the email send fails, the API now returns an
+  error (502) instead of a false "success" — the existing frontend fallback message
+  ("please email/call us directly") kicks in correctly. Needs `SMTP_HOST`/
+  `SMTP_PORT`/`SMTP_USER`/`SMTP_PASS`/`CONTACT_TO_EMAIL` env vars — template in
+  `.env.local.example` (git-tracked; note `.gitignore` needed an explicit
+  `!.env.local.example` exception since the blanket `.env*` rule would otherwise
+  ignore it too). **`.env.local` itself was deliberately left for the client to fill
+  in themselves** (chose not to share the Office 365 app password in chat) — so as of
+  this writing, the LIVE Vercel form is still showing the fallback error until:
+  1. Client generates an app password for `lam@maplefurniture.vn` in the Microsoft
+     365 admin center (Security → App passwords) — or confirms "Authenticated SMTP"
+     is enabled for that mailbox if not using MFA/app-passwords.
+  2. Fills in `.env.local` locally (for local dev/testing).
+  3. Adds the same 5 vars to **Vercel → Project Settings → Environment Variables**
+     (Production) — this step is NOT done via CLI/me, ask the client to do it in the
+     Vercel dashboard, or do it together over screenshare-equivalent guidance, since
+     the secret shouldn't pass through this chat.
+  4. Redeploy after the Vercel env vars are set, then send a real test inquiry to
+     confirm delivery before telling the client it's fixed.
+- **Real PDFs added**: `public/downloads/maple-furniture-cabinet-brochure.pdf` and
+  `maple-furniture-introduction-2026.pdf` (client-supplied, real) replaced the old
+  AI-generated placeholder `maple-furniture-company-profile.pdf` (deleted). Contact
+  page now has two separate download links (`dict.contact.brochureCta`/`introCta`),
+  opened in a new tab (`target="_blank"`) rather than force-downloaded, since the
+  client wants customers to be able to view them, not just save them.
+- **Git repo confirmed working**: remoted to
+  `https://github.com/nhatthien19122000-collab/Maple-web`, on `main`, commit history
+  intact. Always `git add`/`commit`/`push` (in `C:\dev\maple-furniture-web`) after the
+  client confirms a change, mirroring the existing "ask before Vercel deploy" habit —
+  ask before pushing too, though in practice the client has been asking for both
+  together lately ("push GitHub luôn" / "để public luôn").
 
 ## Workflow notes for future sessions
 
