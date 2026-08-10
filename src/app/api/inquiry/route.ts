@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { saveInquiry } from "@/lib/inquiries";
+import { sendInquiryEmail } from "@/lib/mailer";
 
 const inquirySchema = z.object({
   name: z.string().trim().min(1).max(200),
@@ -19,11 +20,22 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "invalid_input" }, { status: 400 });
   }
 
-  await saveInquiry({
+  const inquiry = {
     id: crypto.randomUUID(),
     createdAt: new Date().toISOString(),
     ...parsed.data,
+  };
+
+  await saveInquiry(inquiry).catch((err) => {
+    console.error("Failed to save inquiry to local file:", err);
   });
+
+  try {
+    await sendInquiryEmail(inquiry);
+  } catch (err) {
+    console.error("Failed to send inquiry email:", err);
+    return NextResponse.json({ ok: false, error: "email_failed" }, { status: 502 });
+  }
 
   return NextResponse.json({ ok: true });
 }
