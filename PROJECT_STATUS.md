@@ -353,6 +353,47 @@ email, and two new action buttons "Send Email" / "Call Now" — dict keys
 `reachTitle`/`sendEmailCta`/`callNowCta` in both `en.ts`/`vi.ts`). `officeTitle`
 relabeled "Factory & Head Office" → "Factory Location" to match the client's copy.
 
+## Luxury Residential projects anonymized (2026-08-07)
+
+Client's own end-customers did not authorize using their real names publicly (site
+was already live/shared with the boss by this point). Renamed all 4 Luxury
+Residential entries in `src/content/projects.ts` — **both the display `name` AND the
+URL `slug`** (the slug matters just as much as the name: a real client's surname
+sitting in a public URL defeats the point of anonymizing the display name):
+
+| Project id | Old name / slug | New name / slug | Location now shown |
+|---|---|---|---|
+| p17 | Scott Residence / `hiend-residential-house-arizona` | **Ashford Residence** / `ashford-residence` | Arizona, USA |
+| p18 | Travis Residence / `travis-residence` | **Aurelia Residence** / `aurelia-residence` | Washington, USA |
+| p19 | Hawks Residence / `hawks-residence` | **Sterling Residence** / `sterling-residence` | Oregon, USA |
+| p20 | Sean Residence / `sean-residence` | **Weston Residence** / `weston-residence` | Washington, USA |
+
+Full street addresses were replaced with state-only (per client instruction — these
+4 should only show state, unlike other projects which still show full address).
+`id` fields (p17–p20) and the underlying image gallery filenames
+(`project-travis-residence-*.png` etc., passed as the first arg to `projectGallery()`)
+were deliberately left unchanged — they're not client-facing text, just internal
+plumbing, so renaming them would've been pure churn/risk with no privacy benefit.
+
+**Note:** old URLs (e.g. `/en/projects/hiend-residential-house-arizona`,
+`/en/projects/sean-residence`) now 404 — no redirect was set up from old→new slugs.
+Not an issue for this demo/pre-launch site, but worth knowing if the old links were
+ever shared externally and need a redirect added later.
+
+Verified via `tsc`/`eslint`/`build`, live dev-server browser check (Portfolio page
+filtered to Luxury Residential + Home page's featured-projects section, which
+surfaces Ashford Residence since it's `featured: true`), then deployed to Vercel
+production immediately per explicit client instruction ("để public luôn").
+
+**Vercel CLI note:** in this shell/session, `npx vercel --yes --prod` failed with
+`"Not authorized"` even though `vercel whoami` correctly showed the logged-in
+account (`nhatthien19122000-5511`) and `vercel project ls` could see the project
+fine — the CLI wasn't resolving the team scope from `.vercel/project.json`
+automatically. Fixed by adding `--scope mapleweb` explicitly:
+`npx vercel --yes --prod --scope mapleweb`. If a future session hits the same
+"Not authorized" error on an otherwise-correctly-linked project, try this flag
+before assuming the account lost access.
+
 ## Workflow notes for future sessions
 
 - Client communicates in Vietnamese; respond in Vietnamese.

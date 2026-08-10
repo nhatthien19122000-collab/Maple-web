@@ -416,10 +416,10 @@ export const projects: Project[] = [
   // ---------- Luxury Residential ----------
   buildProject({
     id: "p17",
-    slug: "hiend-residential-house-arizona",
+    slug: "ashford-residence",
     category: "luxuryResidential",
-    name: "Scott Residence",
-    location: "17896 Mountain Air St., Surprise, AZ 85388, USA",
+    name: "Ashford Residence",
+    location: "Arizona, USA",
     images: projectGallery("hiend-residential-apt", [
       "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png",
     ]),
@@ -433,25 +433,28 @@ export const projects: Project[] = [
   }),
   buildProject({
     id: "p18",
-    slug: "travis-residence",
+    slug: "aurelia-residence",
     category: "luxuryResidential",
-    name: "Travis Residence",
+    name: "Aurelia Residence",
+    location: "Washington, USA",
     images: projectGallery("travis-residence", ["png", "png", "png", "png", "png", "png", "png"]),
   }),
   buildProject({
     id: "p19",
-    slug: "hawks-residence",
+    slug: "sterling-residence",
     category: "luxuryResidential",
-    name: "Hawks Residence",
+    name: "Sterling Residence",
+    location: "Oregon, USA",
     images: projectGallery("hawks-residence", [
       "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png",
     ]),
   }),
   buildProject({
     id: "p20",
-    slug: "sean-residence",
+    slug: "weston-residence",
     category: "luxuryResidential",
-    name: "Sean Residence",
+    name: "Weston Residence",
+    location: "Washington, USA",
     images: projectGallery("sean-residence", ["png", "jpg", "jpg", "jpg", "jpg"]),
   }),
 ];
