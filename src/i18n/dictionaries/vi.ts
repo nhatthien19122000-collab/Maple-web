@@ -383,8 +383,10 @@ const vi: Dictionary = {
     whatsappTitle: "Chat Qua WhatsApp",
     whatsappBody: "Muốn trao đổi trực tiếp? Nhắn tin cho đội ngũ xuất khẩu của chúng tôi qua WhatsApp để được phản hồi nhanh.",
     whatsappCta: "Mở WhatsApp",
-    downloadTitle: "Hồ Sơ Năng Lực",
-    downloadBody: "Tải hồ sơ năng lực đầy đủ của chúng tôi, bao gồm tổng quan cơ sở, năng lực sản xuất và các dự án tham chiếu.",
+    downloadTitle: "Tài Liệu & Hồ Sơ Năng Lực",
+    downloadBody: "Tải brochure và hồ sơ giới thiệu công ty của chúng tôi, bao gồm tổng quan cơ sở, năng lực sản xuất và các dự án tham chiếu.",
+    brochureCta: "Tải Brochure Tủ Bếp",
+    introCta: "Tải Hồ Sơ Giới Thiệu Công Ty",
   },
   footer: {
     tagline: "Nội thất theo yêu cầu cho chung cư, khu dân cư cao tuổi, khách sạn, không gian công cộng và nhà ở cao cấp — sản xuất cho xuất khẩu, hoàn thiện thủ công.",

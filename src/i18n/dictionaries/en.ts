@@ -382,8 +382,10 @@ const en = {
     whatsappTitle: "Chat on WhatsApp",
     whatsappBody: "Prefer to talk directly? Message our export team on WhatsApp for a fast response.",
     whatsappCta: "Open WhatsApp",
-    downloadTitle: "Company Profile",
-    downloadBody: "Download our full company profile, including facility overview, capabilities, and past project references.",
+    downloadTitle: "Brochures & Company Profile",
+    downloadBody: "Download our brochure and company introduction, including facility overview, capabilities, and past project references.",
+    brochureCta: "Download Cabinet Brochure",
+    introCta: "Download Company Introduction",
   },
   footer: {
     tagline: "Custom furniture for multifamily, senior living, hospitality, public space, and luxury residential programs — manufactured for export, finished by hand.",

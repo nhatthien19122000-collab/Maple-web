@@ -119,13 +119,24 @@ export default async function ContactPage({
                 <div>
                   <p className="font-serif text-lg">{c.downloadTitle}</p>
                   <p className="mt-1 text-sm text-foreground/60">{c.downloadBody}</p>
-                  <a
-                    href="/downloads/maple-furniture-company-profile.pdf"
-                    download
-                    className="mt-3 inline-block text-[0.75rem] font-medium uppercase tracking-[0.1em] text-accent hover:underline"
-                  >
-                    {dict.common.downloadProfile} →
-                  </a>
+                  <div className="mt-3 flex flex-col items-start gap-2">
+                    <a
+                      href="/downloads/maple-furniture-cabinet-brochure.pdf"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-block text-[0.75rem] font-medium uppercase tracking-[0.1em] text-accent hover:underline"
+                    >
+                      {c.brochureCta} →
+                    </a>
+                    <a
+                      href="/downloads/maple-furniture-introduction-2026.pdf"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-block text-[0.75rem] font-medium uppercase tracking-[0.1em] text-accent hover:underline"
+                    >
+                      {c.introCta} →
+                    </a>
+                  </div>
                 </div>
               </div>
             </Reveal>
