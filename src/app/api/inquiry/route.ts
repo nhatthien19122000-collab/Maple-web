@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { z } from "zod";
 import { saveInquiry } from "@/lib/inquiries";
 import { sendInquiryEmail } from "@/lib/mailer";
@@ -26,16 +26,20 @@ export async function POST(request: Request) {
     ...parsed.data,
   };
 
-  await saveInquiry(inquiry).catch((err) => {
-    console.error("Failed to save inquiry to local file:", err);
+  // Respond to the browser immediately, then save + email in the background.
+  // A slow network round-trip to the visitor was previously causing the
+  // browser's fetch() to fail/appear as an error even though the server had
+  // already finished sending the email successfully.
+  after(async () => {
+    await saveInquiry(inquiry).catch((err) => {
+      console.error("Failed to save inquiry to local file:", err);
+    });
+    try {
+      await sendInquiryEmail(inquiry);
+    } catch (err) {
+      console.error("Failed to send inquiry email:", err);
+    }
   });
-
-  try {
-    await sendInquiryEmail(inquiry);
-  } catch (err) {
-    console.error("Failed to send inquiry email:", err);
-    return NextResponse.json({ ok: false, error: "email_failed" }, { status: 502 });
-  }
 
   return NextResponse.json({ ok: true });
 }
