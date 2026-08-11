@@ -456,7 +456,10 @@ dance, but that wasn't investigated yet.
     this if asked to change who receives inquiries.
   - Verified end-to-end 2026-08-10: real test submissions confirmed `ok:true` both
     against local dev and the live `https://maple-furniture-web.vercel.app` after
-    deploying with the Vercel env vars set.
+    deploying with the Vercel env vars set — **and the client confirmed the test
+    emails actually landed in the `lam@maplefurniture.vn` inbox.** This feature is
+    fully done, not just API-level-verified; no follow-up needed unless the "to"
+    address changes (see the Resend sandbox-domain note above).
 - **Real PDFs added**: `public/downloads/maple-furniture-cabinet-brochure.pdf` and
   `maple-furniture-introduction-2026.pdf` (client-supplied, real) replaced the old
   AI-generated placeholder `maple-furniture-company-profile.pdf` (deleted). Contact
