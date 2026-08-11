@@ -425,29 +425,38 @@ dance, but that wasn't investigated yet.
 
 ## Git + email wiring (2026-08-10)
 
-- **Contact form now actually emails someone.** Previously `POST /api/inquiry` only
-  wrote to `data/inquiries.json` — harmless in local dev, but silently useless on
-  Vercel (ephemeral filesystem, nothing ever reached the CEO). Added
-  `src/lib/mailer.ts` (nodemailer over Office 365 SMTP) and wired it into
-  `src/app/api/inquiry/route.ts`; if the email send fails, the API now returns an
-  error (502) instead of a false "success" — the existing frontend fallback message
-  ("please email/call us directly") kicks in correctly. Needs `SMTP_HOST`/
-  `SMTP_PORT`/`SMTP_USER`/`SMTP_PASS`/`CONTACT_TO_EMAIL` env vars — template in
-  `.env.local.example` (git-tracked; note `.gitignore` needed an explicit
-  `!.env.local.example` exception since the blanket `.env*` rule would otherwise
-  ignore it too). **`.env.local` itself was deliberately left for the client to fill
-  in themselves** (chose not to share the Office 365 app password in chat) — so as of
-  this writing, the LIVE Vercel form is still showing the fallback error until:
-  1. Client generates an app password for `lam@maplefurniture.vn` in the Microsoft
-     365 admin center (Security → App passwords) — or confirms "Authenticated SMTP"
-     is enabled for that mailbox if not using MFA/app-passwords.
-  2. Fills in `.env.local` locally (for local dev/testing).
-  3. Adds the same 5 vars to **Vercel → Project Settings → Environment Variables**
-     (Production) — this step is NOT done via CLI/me, ask the client to do it in the
-     Vercel dashboard, or do it together over screenshare-equivalent guidance, since
-     the secret shouldn't pass through this chat.
-  4. Redeploy after the Vercel env vars are set, then send a real test inquiry to
-     confirm delivery before telling the client it's fixed.
+- **Contact form now actually emails someone — DONE and verified live.** Previously
+  `POST /api/inquiry` only wrote to `data/inquiries.json` — harmless in local dev, but
+  silently useless on Vercel (ephemeral filesystem, nothing ever reached the CEO).
+  `src/lib/mailer.ts` sends via **Resend's REST API** (plain `fetch`, no SDK
+  dependency) to `CONTACT_TO_EMAIL`; wired into `src/app/api/inquiry/route.ts` — if
+  the email send fails, the API returns an error (502) instead of a false "success",
+  so the frontend's existing fallback message ("please email/call us directly")
+  kicks in correctly instead of silently losing the lead.
+  - **Office 365 SMTP was tried first and abandoned**: the client's Microsoft 365
+    tenant has **Security Defaults enabled**, which blocks legacy app passwords
+    entirely (no "App password" option appears under Security info → Add sign-in
+    method) — this is an org-wide tenant policy, not something to work around from a
+    single mailbox. Don't re-attempt SMTP app-passwords for this tenant without the
+    client's IT/admin changing that policy first.
+  - **Env vars**: `RESEND_API_KEY`, `CONTACT_TO_EMAIL=lam@maplefurniture.vn` — in
+    `.env.local` (git-ignored, real key already filled in locally) and set on
+    **Vercel → Production** via `vercel env add <name> production --scope mapleweb`
+    (the `--scope mapleweb` flag is required, see the Vercel CLI note further up this
+    file). Template lives in `.env.local.example` (git-tracked; `.gitignore` has an
+    explicit `!.env.local.example` exception since the blanket `.env*` rule would
+    otherwise ignore it too).
+  - **Sender address is Resend's shared sandbox domain** (`onboarding@resend.dev`),
+    not `lam@maplefurniture.vn` — this works today because Resend's free/unverified
+    tier can only deliver to the same address that owns the Resend account, and that
+    happens to already be `lam@maplefurniture.vn` (same as `CONTACT_TO_EMAIL`), so it
+    lines up by coincidence. **If the "to" address ever needs to change to someone
+    else, delivery will silently stop working** until the client verifies
+    `maplefurniture.vn` as a sending domain in Resend (adds a few DNS records) — flag
+    this if asked to change who receives inquiries.
+  - Verified end-to-end 2026-08-10: real test submissions confirmed `ok:true` both
+    against local dev and the live `https://maple-furniture-web.vercel.app` after
+    deploying with the Vercel env vars set.
 - **Real PDFs added**: `public/downloads/maple-furniture-cabinet-brochure.pdf` and
   `maple-furniture-introduction-2026.pdf` (client-supplied, real) replaced the old
   AI-generated placeholder `maple-furniture-company-profile.pdf` (deleted). Contact
