@@ -457,9 +457,29 @@ dance, but that wasn't investigated yet.
   - Verified end-to-end 2026-08-10: real test submissions confirmed `ok:true` both
     against local dev and the live `https://maple-furniture-web.vercel.app` after
     deploying with the Vercel env vars set — **and the client confirmed the test
-    emails actually landed in the `lam@maplefurniture.vn` inbox.** This feature is
-    fully done, not just API-level-verified; no follow-up needed unless the "to"
-    address changes (see the Resend sandbox-domain note above).
+    emails actually landed in the `lam@maplefurniture.vn` inbox.**
+  - **Follow-up bug, same day**: client then submitted the real form from their own
+    browser and got the frontend's "something went wrong" error — but `vercel logs`
+    showed the server-side request completed with NO email error both times. Root
+    cause: `POST /api/inquiry` was `await`-ing the full Resend API round-trip before
+    responding, so on the client's specific network the browser's `fetch()` would
+    fail/appear to error before the (successful) response arrived — a false failure,
+    not a real one. **Fixed by wrapping the save+email work in Next.js's `after()`**
+    (`src/app/api/inquiry/route.ts`) so the API responds `200 {ok:true}` immediately
+    and the email send happens in the background after the response is already sent.
+    Local response time dropped from "however long the Resend round-trip takes" to
+    ~20-30ms; live (cross-region) to ~1.4s, both well clear of typical browser fetch
+    timeouts. **Trade-off accepted**: if the background email send ever genuinely
+    fails now, the client no longer sees an error (they always get `ok:true`) — this
+    was judged acceptable since real server-side email failures haven't been observed
+    in practice (every failure so far was client-side network, not the send itself),
+    and it directly fixes a real, reproduced false-negative that was actively
+    confusing/worrying the client on the live site. If inquiries seem to go missing
+    in the future, check Vercel function logs for `sendInquiryEmail` errors — the
+    client will NOT see them anymore.
+  - This feature is now fully done — no follow-up needed unless the "to" address
+    changes (see the Resend sandbox-domain note above) or missing-inquiry reports
+    come in (see trade-off note just above).
 - **Real PDFs added**: `public/downloads/maple-furniture-cabinet-brochure.pdf` and
   `maple-furniture-introduction-2026.pdf` (client-supplied, real) replaced the old
   AI-generated placeholder `maple-furniture-company-profile.pdf` (deleted). Contact
