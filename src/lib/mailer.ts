@@ -1,24 +1,14 @@
-import nodemailer from "nodemailer";
 import type { Inquiry } from "@/content/types";
 
-function getTransport() {
-  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;
-  if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS) {
-    throw new Error(
-      "Email is not configured — set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS (see .env.local.example)."
-    );
-  }
-  return nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: Number(SMTP_PORT),
-    secure: Number(SMTP_PORT) === 465,
-    auth: { user: SMTP_USER, pass: SMTP_PASS },
-  });
-}
+const RESEND_API_URL = "https://api.resend.com/emails";
+const SENDER = "Maple Furniture Website <onboarding@resend.dev>";
 
 export async function sendInquiryEmail(inquiry: Inquiry): Promise<void> {
-  const transport = getTransport();
-  const to = process.env.CONTACT_TO_EMAIL || process.env.SMTP_USER;
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    throw new Error("Email is not configured — set RESEND_API_KEY (see .env.local.example).");
+  }
+  const to = process.env.CONTACT_TO_EMAIL || "lam@maplefurniture.vn";
 
   const lines = [
     `New project inquiry from the Maple Furniture website`,
@@ -35,11 +25,23 @@ export async function sendInquiryEmail(inquiry: Inquiry): Promise<void> {
     `Submitted: ${inquiry.createdAt}`,
   ];
 
-  await transport.sendMail({
-    from: `"Maple Furniture Website" <${process.env.SMTP_USER}>`,
-    to,
-    replyTo: inquiry.email,
-    subject: `New inquiry: ${inquiry.name}${inquiry.company ? ` (${inquiry.company})` : ""}`,
-    text: lines.join("\n"),
+  const res = await fetch(RESEND_API_URL, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: SENDER,
+      to,
+      reply_to: inquiry.email,
+      subject: `New inquiry: ${inquiry.name}${inquiry.company ? ` (${inquiry.company})` : ""}`,
+      text: lines.join("\n"),
+    }),
   });
+
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Resend API error (${res.status}): ${body}`);
+  }
 }
