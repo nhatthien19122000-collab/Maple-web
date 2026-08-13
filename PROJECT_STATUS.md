@@ -454,6 +454,17 @@ dance, but that wasn't investigated yet.
     else, delivery will silently stop working** until the client verifies
     `maplefurniture.vn` as a sending domain in Resend (adds a few DNS records) — flag
     this if asked to change who receives inquiries.
+    - **This happened 2026-08-13**: client asked to also send to
+      `Rnd@maplefurniture.vn`. Tested locally first — Resend rejected the whole send
+      (403, "You can only send testing emails to your own email address") when a
+      second recipient was added, which would have silently broken delivery to
+      `lam@` too if deployed. Started the domain-verification flow (client began
+      adding Resend's DKIM/SPF DNS records) but then asked to switch to Gmail
+      instead rather than wait on DNS — **see the Gmail SMTP entry below, which
+      superseded this Resend integration entirely.** The domain-verification DNS
+      records may or may not have been completed; irrelevant now since Resend is no
+      longer used, but if Resend ever comes back into play, check whether those
+      records are still sitting in the DNS zone unused.
   - Verified end-to-end 2026-08-10: real test submissions confirmed `ok:true` both
     against local dev and the live `https://maple-furniture-web.vercel.app` after
     deploying with the Vercel env vars set — **and the client confirmed the test
@@ -477,9 +488,60 @@ dance, but that wasn't investigated yet.
     confusing/worrying the client on the live site. If inquiries seem to go missing
     in the future, check Vercel function logs for `sendInquiryEmail` errors — the
     client will NOT see them anymore.
-  - This feature is now fully done — no follow-up needed unless the "to" address
-    changes (see the Resend sandbox-domain note above) or missing-inquiry reports
-    come in (see trade-off note just above).
+  - **⚠️ SUPERSEDED 2026-08-13 — see "Gmail SMTP switch" entry directly below.**
+    Everything above this line describes the Resend integration, which is no longer
+    what's live. Kept for history/context (the `after()` fix and false-failure
+    lesson still apply regardless of which provider sends the email).
+
+## Gmail SMTP switch (2026-08-13) — CURRENT email provider, not yet deployed
+
+- **Why**: client asked to also notify `Rnd@maplefurniture.vn` in addition to
+  `lam@maplefurniture.vn`. Resend's unverified sandbox domain can only deliver to
+  the account owner's own address — adding a second recipient made Resend reject
+  the *entire* send (confirmed locally: 403 "You can only send testing emails to
+  your own email address"), which would have broken delivery to `lam@` too, not
+  just failed to add `Rnd@`. Domain verification (DNS records) was offered as the
+  proper fix and the client started that in Resend, but then asked to switch to
+  Gmail instead rather than wait on DNS propagation — simpler, and Gmail SMTP has
+  no such recipient restriction.
+- **What changed**: `src/lib/mailer.ts` rewritten to use `nodemailer` over Gmail
+  SMTP (`nodemailer.createTransport({ service: "gmail", auth: { user, pass } })`)
+  instead of Resend's REST API. `nodemailer` + `@types/nodemailer` reinstalled
+  (had been removed when Resend replaced the original Office 365 SMTP attempt —
+  see the irony of coming back to SMTP after all). `route.ts` and the `after()`
+  background-send pattern are UNCHANGED — only the transport inside `mailer.ts`
+  differs.
+- **Sender account**: `rnd.team.maple@gmail.com` (client's choice, dedicated Gmail
+  for this purpose, not a personal inbox) — this is the `GMAIL_USER` env var and
+  also appears as the visible "from" name/address on notification emails.
+- **Env vars** (replacing `RESEND_API_KEY`): `GMAIL_USER`, `GMAIL_APP_PASSWORD`,
+  `CONTACT_TO_EMAIL` (now `lam@maplefurniture.vn,Rnd@maplefurniture.vn` — comma-
+  separated list, `mailer.ts` splits on `,` and trims whitespace). Template in
+  `.env.local.example`, updated to match.
+- **`GMAIL_APP_PASSWORD` is a Google "App Password"**, not the account's normal
+  login password — requires 2-Step Verification enabled on the Gmail account first
+  (myaccount.google.com/security → 2-Step Verification → App passwords). Client
+  chose to fill `.env.local` themselves rather than share the password in chat
+  (same self-service pattern as the earlier Office 365 attempt) — as of this
+  writing `.env.local` has `GMAIL_USER` filled in but `GMAIL_APP_PASSWORD` blank.
+- **⚠️ NOT YET DEPLOYED TO VERCEL — this is the critical open item.** Code is
+  committed and pushed to GitHub (commit `f7f4b0b`), but `vercel --prod` has NOT
+  been run since this change, and Vercel's production env vars still only have the
+  old `RESEND_API_KEY`/`CONTACT_TO_EMAIL` (single address) from the previous setup.
+  **Do not deploy until:**
+  1. Client fills in `GMAIL_APP_PASSWORD` in local `.env.local` (or provides it) —
+     verify locally first with a real test submission before touching Vercel.
+  2. Add `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `CONTACT_TO_EMAIL` (both addresses) to
+     **Vercel → Production** via `vercel env add <name> production --scope
+     mapleweb` (remove/overwrite the old `RESEND_API_KEY` env var, no longer used
+     — leaving it doesn't hurt anything but it's dead weight).
+  3. `vercel --yes --prod --scope mapleweb`, then send a real test inquiry against
+     the live URL and confirm delivery to BOTH `lam@` and `Rnd@` before telling the
+     client it's done — deploying with the password missing would silently break
+     the contact form (same `after()` trade-off as before: client sees no error).
+  Verified locally 2026-08-13 that the code correctly throws/logs "Email is not
+  configured" server-side (not shown to the client) when `GMAIL_APP_PASSWORD` is
+  blank — confirms the code path works, just waiting on the real password.
 - **Real PDFs added**: `public/downloads/maple-furniture-cabinet-brochure.pdf` and
   `maple-furniture-introduction-2026.pdf` (client-supplied, real) replaced the old
   AI-generated placeholder `maple-furniture-company-profile.pdf` (deleted). Contact
