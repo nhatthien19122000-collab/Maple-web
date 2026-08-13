@@ -8,7 +8,10 @@ export async function sendInquiryEmail(inquiry: Inquiry): Promise<void> {
   if (!apiKey) {
     throw new Error("Email is not configured — set RESEND_API_KEY (see .env.local.example).");
   }
-  const to = process.env.CONTACT_TO_EMAIL || "lam@maplefurniture.vn";
+  const to = (process.env.CONTACT_TO_EMAIL || "lam@maplefurniture.vn")
+    .split(",")
+    .map((e) => e.trim())
+    .filter(Boolean);
 
   const lines = [
     `New project inquiry from the Maple Furniture website`,
