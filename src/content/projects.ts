@@ -173,7 +173,7 @@ export const projects: Project[] = [
     category: "multifamily",
     name: "Holy Family Haven",
     location: "Clarkston, WA, USA",
-    images: projectGallery("clarkston-family-haven", ["jpg", "png", "png", "png", "png", "png", "png", "jpg"]),
+    images: projectGallery("clarkston-family-haven", ["png", "png", "png", "png", "png", "png", "png", "jpg"]),
     description: {
       en: "Holy Family Haven is a modern residential development located in Spokane, Washington. The project combines contemporary design with everyday practicality, offering residents well-planned spaces and quality finishes. Maple Furniture was responsible for the supply and installation of kitchen cabinets and vanities in all residential units.\n\nThe development reflects Maple's commitment to delivering large-scale solutions without compromising the final product's quality — each cabinet was designed to maximize space usage and ensure long-term durability.",
       vi: "Holy Family Haven là một khu dân cư hiện đại tọa lạc tại Spokane, Washington. Dự án kết hợp thiết kế đương đại với tính thực dụng hàng ngày, mang đến cho cư dân không gian được bố trí hợp lý và hoàn thiện chất lượng cao. Maple Furniture chịu trách nhiệm cung cấp và lắp đặt tủ bếp cùng tủ lavabo cho toàn bộ các căn hộ.\n\nDự án thể hiện cam kết của Maple trong việc triển khai các giải pháp quy mô lớn mà không đánh đổi chất lượng sản phẩm cuối cùng — mỗi chiếc tủ đều được thiết kế để tối ưu không gian sử dụng và đảm bảo độ bền lâu dài.",
@@ -188,7 +188,7 @@ export const projects: Project[] = [
     category: "multifamily",
     name: "Garland Multi-Family",
     location: "951 West Walton Avenue, Spokane, WA 99205, USA",
-    images: projectGallery("garland-apartments", ["jpg", "jpg", "jpg", "jpg", "jpg"]),
+    images: projectGallery("garland-apartments", ["png", "jpg", "jpg", "jpg", "jpg"]),
     description: {
       en: "The Garland Multi-Family is a modern residential development located in Spokane, Washington. The project combines contemporary design with everyday practicality, offering residents well-planned spaces and quality finishes. Maple Furniture was responsible for the supply and installation of kitchen cabinets and vanities in all residential units.\n\nThe development reflects Maple's commitment to delivering large-scale solutions without compromising the final product's quality — each cabinet was designed to maximize space usage and ensure long-term durability.",
       vi: "Garland Multi-Family là một khu dân cư hiện đại tọa lạc tại Spokane, Washington. Dự án kết hợp thiết kế đương đại với tính thực dụng hàng ngày, mang đến cho cư dân không gian được bố trí hợp lý và hoàn thiện chất lượng cao. Maple Furniture chịu trách nhiệm cung cấp và lắp đặt tủ bếp cùng tủ lavabo cho toàn bộ các căn hộ.\n\nDự án thể hiện cam kết của Maple trong việc triển khai các giải pháp quy mô lớn mà không đánh đổi chất lượng sản phẩm cuối cùng — mỗi chiếc tủ đều được thiết kế để tối ưu không gian sử dụng và đảm bảo độ bền lâu dài.",
@@ -273,7 +273,7 @@ export const projects: Project[] = [
     category: "multifamily",
     name: "Thrive at Green Mountain",
     location: "Camas, WA, USA",
-    images: projectGallery("thrive-at-green-mountain", ["jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg"]),
+    images: projectGallery("thrive-at-green-mountain", ["png", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg"]),
   }),
 
   // ---------- Senior Living ----------
@@ -284,7 +284,7 @@ export const projects: Project[] = [
     name: "Affinity at Badger Mountain",
     location: "2201 Stonehouse Ave, Richland, WA 99352, USA",
     images: projectGallery("affinity-at-badger-mountain", [
-      "jpg", "jpg", "png", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "png", "png", "png", "png",
+      "png", "jpg", "png", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "png", "png", "png", "png",
     ]),
     description: {
       en: "The Affinity at Badger Mountain is a large-scale senior living residential development in Richland, Washington. The project required functional, safe, and aesthetically refined furniture solutions, aligned with the specific needs of this segment. Maple Furniture was responsible for the complete supply of kitchen cabinets and vanities for all units.",
@@ -320,7 +320,7 @@ export const projects: Project[] = [
     name: "Cambria at Colorado",
     location: "Colorado, USA",
     images: projectGallery("cambria-hotel-colorado", [
-      "webp", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png",
+      "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png", "png",
     ]),
     description: {
       en: "Cambria Hotel Colorado represents one of Maple Furniture's most significant hospitality projects. We were entrusted to design, manufacture, and supply furniture solutions throughout the property, including guest rooms and public spaces. From concept development to final production, every piece was carefully crafted to meet the brand's design vision, durability requirements, and guest experience standards, showcasing Maple's capability to deliver complete furniture packages for large-scale hospitality projects.",
@@ -340,7 +340,7 @@ export const projects: Project[] = [
     category: "hospitality",
     name: "Fairfield by Marriott",
     location: "Chicago, IL, USA",
-    images: projectGallery("fairfield-by-marriott-chicago", ["jpg", "jpg", "jpg", "jpg", "jpg", "jpg"]),
+    images: projectGallery("fairfield-by-marriott-chicago", ["png", "jpg", "jpg", "jpg", "jpg", "jpg"]),
   }),
   buildProject({
     id: "p12",
@@ -348,7 +348,7 @@ export const projects: Project[] = [
     category: "hospitality",
     name: "Swiftwater",
     location: "Pennsylvania, USA",
-    images: projectGallery("swiftwater", ["jpg", "jpg", "jpg", "jpg", "jpg", "webp"]),
+    images: projectGallery("swiftwater", ["png", "jpg", "jpg", "jpg", "jpg", "webp"]),
     description: {
       en: "For The Swiftwater Hotel, Maple Furniture provided custom bathroom vanity solutions that combine modern design, durable construction, and hospitality-grade functionality, contributing to a refined and comfortable guest experience.",
       vi: "Với The Swiftwater Hotel, Maple Furniture cung cấp giải pháp tủ lavabo phòng tắm theo yêu cầu riêng, kết hợp thiết kế hiện đại, kết cấu bền bỉ và công năng đạt chuẩn khách sạn, góp phần mang đến trải nghiệm lưu trú tinh tế và thoải mái cho khách hàng.",
@@ -363,7 +363,7 @@ export const projects: Project[] = [
     category: "hospitality",
     name: "Sandpiper",
     location: "Florida, USA",
-    images: projectGallery("sandpiper", ["webp", "jpg", "png", "jpg", "jpg"]),
+    images: projectGallery("sandpiper", ["png", "jpg", "png", "jpg", "jpg"]),
     description: {
       en: "For Sandpiper Resort, Maple Furniture crafted custom tables and full-length mirrors designed to complement the property's relaxed luxury aesthetic, combining durability, refined detailing, and functionality for the guestroom environment.",
       vi: "Với Sandpiper Resort, Maple Furniture chế tác bàn và gương toàn thân theo yêu cầu riêng, được thiết kế để tôn lên phong cách sang trọng, phóng khoáng của khu nghỉ dưỡng, kết hợp độ bền, chi tiết hoàn thiện tinh tế và công năng phù hợp cho không gian phòng khách.",
@@ -378,7 +378,7 @@ export const projects: Project[] = [
     category: "hospitality",
     name: "CQ Midtown",
     location: "New York, NY, USA",
-    images: projectGallery("cq-midtown", ["jpg", "jpg", "jpg", "jpg", "jpg"]),
+    images: projectGallery("cq-midtown", ["png", "jpg", "jpg", "jpg", "jpg"]),
     description: {
       en: "Maple Furniture supplied custom bathroom vanity solutions for CQ Midtown New York, featuring a clean contemporary design, durable solid-surface countertop, and space-efficient functionality tailored to the modern urban hospitality experience.",
       vi: "Maple Furniture cung cấp giải pháp tủ lavabo phòng tắm theo yêu cầu riêng cho CQ Midtown New York, với thiết kế đương đại tối giản, mặt đá solid-surface bền bỉ và công năng tối ưu không gian, phù hợp với trải nghiệm khách sạn đô thị hiện đại.",
@@ -395,7 +395,7 @@ export const projects: Project[] = [
     category: "publicSpaces",
     name: "Cambria Hotels",
     images: projectGallery("cambria-hotels-public-spaces", [
-      "jpg", "png", "png", "jpg", "png", "png", "png", "png", "png", "png", "png", "png", "jpg", "png", "png", "png", "png", "png", "png", "png", "png", "png",
+      "png", "png", "png", "jpg", "png", "png", "png", "png", "png", "png", "png", "png", "jpg", "png", "png", "png", "png", "png", "png", "png", "png", "png",
     ]),
     description: {
       en: "Designed for Connection. Crafted for Everyday Hospitality. Maple designs and manufactures custom furniture for hospitality public spaces, including lounge seating, reception furniture, tables, banquettes, outdoor collections, and collaborative areas. Every piece is crafted to combine comfort, durability, and timeless design, creating welcoming environments that elevate the guest experience.",
