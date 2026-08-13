@@ -13,9 +13,9 @@ export const projectCategories: { value: ProjectCategory; labelKey: ProjectCateg
 const categoryFallbackImage: Record<ProjectCategory, string> = {
   multifamily: "/cap-multifamily.jpg",
   seniorLiving: "/cap-seniorliving.jpg",
-  hospitality: "/cap-hospitality.jpg",
+  hospitality: "/cap-hospitality.png",
   publicSpaces: "/cap-publicspaces.jpg",
-  luxuryResidential: "/cap-luxuryresidential.jpg",
+  luxuryResidential: "/cap-luxuryresidential.png",
 };
 
 // Builds an ordered gallery from client-supplied photos named
