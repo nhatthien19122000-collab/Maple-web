@@ -40,7 +40,7 @@ export default async function QualityControlPage({
         eyebrow={q.eyebrow}
         title={q.title}
         subtitle={q.subtitle}
-        image="https://picsum.photos/seed/mf-quality-hero/2200/1400"
+        image="/about-hero.png"
       />
 
       <section className="py-24 lg:py-32">

@@ -41,7 +41,7 @@ export default async function ProjectsPage({
         eyebrow={dict.projects.eyebrow}
         title={dict.projects.title}
         subtitle={dict.projects.subtitle}
-        image="https://picsum.photos/seed/mf-projects-hero/2200/1400"
+        image="/about-hero.png"
       />
       <section className="py-20 lg:py-28">
         <Container>

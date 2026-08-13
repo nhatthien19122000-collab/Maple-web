@@ -35,7 +35,7 @@ export default async function ManufacturingProcessPage({
         eyebrow={p.eyebrow}
         title={p.title}
         subtitle={p.subtitle}
-        image="https://picsum.photos/seed/mf-process-hero/2200/1400"
+        image="/about-hero.png"
       />
 
       <section className="py-24 lg:py-32">

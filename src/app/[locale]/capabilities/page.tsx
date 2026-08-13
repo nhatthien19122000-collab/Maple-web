@@ -39,7 +39,7 @@ export default async function CapabilitiesPage({
         eyebrow={c.eyebrow}
         title={c.title}
         subtitle={c.subtitle}
-        image="https://picsum.photos/seed/mf-capabilities-hero/2200/1400"
+        image="/about-hero.png"
       />
 
       <section className="py-24 lg:py-32">

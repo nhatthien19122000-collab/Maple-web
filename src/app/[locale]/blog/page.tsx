@@ -33,7 +33,7 @@ export default async function BlogPage({
         eyebrow={dict.blog.eyebrow}
         title={dict.blog.title}
         subtitle={dict.blog.subtitle}
-        image="https://picsum.photos/seed/mf-blog-hero/2200/1400"
+        image="/about-hero.png"
       />
       <section className="py-20 lg:py-28">
         <Container>
