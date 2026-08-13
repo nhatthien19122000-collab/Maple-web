@@ -81,7 +81,7 @@ export default async function QualityControlPage({
             </Reveal>
           </div>
           <Reveal>
-            <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
                 src="https://picsum.photos/seed/mf-qc-inspection/1000/1250"
                 alt="Quality inspection"

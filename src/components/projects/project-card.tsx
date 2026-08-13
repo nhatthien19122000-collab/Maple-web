@@ -21,7 +21,7 @@ export function ProjectCard({
       href={`/${locale}/projects/${project.slug}`}
       className="group block"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-surface-muted">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-surface-muted">
         <Image
           src={project.coverImage}
           alt={project.title[locale]}

@@ -89,7 +89,7 @@ export default async function BlogPostPage({
             <div className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((p) => (
                 <Link key={p.id} href={`/${locale}/blog/${p.slug}`} className="group block">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-surface-muted">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-surface-muted">
                     <Image
                       src={p.coverImage}
                       alt={p.title[locale]}

@@ -74,7 +74,7 @@ export default async function FactoryPage({
             </div>
           </div>
           <Reveal delay={0.05}>
-            <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
                 src="/factory-6.jpg"
                 alt="Maple Furniture CNC production line"
@@ -93,7 +93,7 @@ export default async function FactoryPage({
           <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {["2", "3", "4", "5", "7", "8", "9", "10", "11", "12", "13", "14"].map((n, i) => (
               <Reveal key={n} delay={i * 0.03}>
-                <div className="relative aspect-square overflow-hidden">
+                <div className="relative aspect-square overflow-hidden rounded-xl">
                   <Image
                     src={`/factory-${n}.jpg`}
                     alt="Maple Furniture factory"
@@ -136,7 +136,7 @@ export default async function FactoryPage({
       <section className="relative overflow-hidden bg-ink py-24 text-white lg:py-32">
         <Container className="grid items-center gap-14 lg:grid-cols-2">
           <Reveal>
-            <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
                 src="/factory-15.jpg"
                 alt="Maple Furniture factory floor"

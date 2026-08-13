@@ -74,7 +74,7 @@ export default async function AboutPage({
             </Reveal>
           </div>
           <Reveal>
-            <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
                 src="https://picsum.photos/seed/mf-about-story/1000/1250"
                 alt="Maple Furniture workshop"
@@ -101,7 +101,7 @@ export default async function AboutPage({
             </Reveal>
           </div>
           <Reveal>
-            <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
                 src="https://picsum.photos/seed/mf-about-export/1000/1250"
                 alt="Export container loading"

@@ -91,7 +91,7 @@ export function BlogExplorer({
           {filtered.map((post, i) => (
             <Reveal key={post.id} delay={Math.min(i * 0.05, 0.3)}>
               <Link href={`/${locale}/blog/${post.slug}`} className="group block">
-                <div className="relative aspect-[4/3] overflow-hidden bg-surface-muted">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-surface-muted">
                   <Image
                     src={post.coverImage}
                     alt={post.title[locale]}

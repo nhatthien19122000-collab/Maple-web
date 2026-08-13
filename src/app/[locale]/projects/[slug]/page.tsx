@@ -83,7 +83,7 @@ export default async function ProjectDetailPage({
               {project.images.map((src, i) => (
                 <Reveal key={src} delay={i * 0.06} className={i === 0 ? "sm:col-span-2" : undefined}>
                   <div
-                    className={`relative overflow-hidden bg-surface-muted ${
+                    className={`relative overflow-hidden rounded-2xl bg-surface-muted ${
                       i === 0 ? "aspect-[16/10]" : "aspect-[4/3]"
                     }`}
                   >

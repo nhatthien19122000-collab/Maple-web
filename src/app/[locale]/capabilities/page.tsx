@@ -53,7 +53,7 @@ export default async function CapabilitiesPage({
               )}
             >
               <Reveal>
-                <div className="relative aspect-[3/4] overflow-hidden bg-surface-muted">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-surface-muted">
                   <Image
                     src={capabilityImages[item.category]}
                     alt={item.title}

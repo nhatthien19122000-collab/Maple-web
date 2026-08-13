@@ -174,7 +174,7 @@ export default async function HomePage({
       <section className="relative overflow-hidden bg-ink py-24 text-white lg:py-32">
         <Container className="grid items-center gap-14 lg:grid-cols-2">
           <Reveal>
-            <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
                 src="https://picsum.photos/seed/mf-quality-control/1000/1250"
                 alt="Quality inspection at Maple Furniture"
