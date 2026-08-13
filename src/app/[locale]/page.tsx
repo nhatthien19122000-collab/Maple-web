@@ -176,7 +176,7 @@ export default async function HomePage({
           <Reveal>
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
-                src="https://picsum.photos/seed/mf-quality-control/1000/1250"
+                src="/quality-assurance.png"
                 alt="Quality inspection at Maple Furniture"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
