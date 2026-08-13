@@ -301,7 +301,7 @@ export const projects: Project[] = [
     name: "Affinity at Missoula",
     location: "1955 Mary Jane Blvd, Missoula, MT 59808, USA",
     images: projectGallery("affinity-at-missoula", [
-      "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "png", "png", "png", "png",
+      "png", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "jpg", "png", "png", "png", "png",
     ]),
     description: {
       en: "The Affinity at Missoula is a large-scale senior living residential development in Missoula, Montana. The project required functional, safe, and aesthetically refined furniture solutions, aligned with the specific needs of this segment. Maple Furniture was responsible for the complete supply of kitchen cabinets and vanities for all units.",
