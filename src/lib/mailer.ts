@@ -1,14 +1,23 @@
+import nodemailer from "nodemailer";
 import type { Inquiry } from "@/content/types";
 
-const RESEND_API_URL = "https://api.resend.com/emails";
-const SENDER = "Maple Furniture Website <onboarding@resend.dev>";
+function getTransport() {
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
+  if (!user || !pass) {
+    throw new Error(
+      "Email is not configured — set GMAIL_USER and GMAIL_APP_PASSWORD (see .env.local.example)."
+    );
+  }
+  return nodemailer.createTransport({
+    service: "gmail",
+    auth: { user, pass },
+  });
+}
 
 export async function sendInquiryEmail(inquiry: Inquiry): Promise<void> {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    throw new Error("Email is not configured — set RESEND_API_KEY (see .env.local.example).");
-  }
-  const to = (process.env.CONTACT_TO_EMAIL || "lam@maplefurniture.vn")
+  const transport = getTransport();
+  const to = (process.env.CONTACT_TO_EMAIL || process.env.GMAIL_USER)!
     .split(",")
     .map((e) => e.trim())
     .filter(Boolean);
@@ -28,23 +37,11 @@ export async function sendInquiryEmail(inquiry: Inquiry): Promise<void> {
     `Submitted: ${inquiry.createdAt}`,
   ];
 
-  const res = await fetch(RESEND_API_URL, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: SENDER,
-      to,
-      reply_to: inquiry.email,
-      subject: `New inquiry: ${inquiry.name}${inquiry.company ? ` (${inquiry.company})` : ""}`,
-      text: lines.join("\n"),
-    }),
+  await transport.sendMail({
+    from: `"Maple Furniture Website" <${process.env.GMAIL_USER}>`,
+    to,
+    replyTo: inquiry.email,
+    subject: `New inquiry: ${inquiry.name}${inquiry.company ? ` (${inquiry.company})` : ""}`,
+    text: lines.join("\n"),
   });
-
-  if (!res.ok) {
-    const body = await res.text().catch(() => "");
-    throw new Error(`Resend API error (${res.status}): ${body}`);
-  }
 }
