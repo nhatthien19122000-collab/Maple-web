@@ -37,7 +37,7 @@ export default async function AboutPage({
         eyebrow={a.eyebrow}
         title={a.title}
         subtitle={a.tagline}
-        image="https://picsum.photos/seed/mf-about-hero/2200/1400"
+        image="/about-hero.png"
       />
 
       <section className="py-24 lg:py-32">
@@ -76,7 +76,7 @@ export default async function AboutPage({
           <Reveal>
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
-                src="https://picsum.photos/seed/mf-about-story/1000/1250"
+                src="/about-workshop.png"
                 alt="Maple Furniture workshop"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -103,7 +103,7 @@ export default async function AboutPage({
           <Reveal>
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
-                src="https://picsum.photos/seed/mf-about-export/1000/1250"
+                src="/about-export.png"
                 alt="Export container loading"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
