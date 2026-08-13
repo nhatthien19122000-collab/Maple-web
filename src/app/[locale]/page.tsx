@@ -104,7 +104,7 @@ export default async function HomePage({
             {capabilities.map((cap, i) => (
               <Reveal key={cap.key} delay={i * 0.06}>
                 <Link href={cap.href} className="group block">
-                  <div className="relative aspect-[3/4] overflow-hidden bg-surface-muted">
+                  <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-surface-muted">
                     <Image
                       src={cap.image}
                       alt={cap.title}
