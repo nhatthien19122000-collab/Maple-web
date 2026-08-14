@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-const LOCKUP_WIDTH = 951;
-const LOCKUP_HEIGHT = 210;
+const LOCKUP_WIDTH = 984;
+const LOCKUP_HEIGHT = 346;
 
 export function Logo({
   variant = "dark",
@@ -13,7 +13,7 @@ export function Logo({
   height?: number;
   className?: string;
 }) {
-  const src = variant === "light" ? "/logo-lockup-white.png" : "/logo-lockup.png";
+  const src = variant === "light" ? "/logo-full-white.png" : "/logo-full.png";
 
   return (
     <Image

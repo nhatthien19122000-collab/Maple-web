@@ -25,7 +25,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
     <footer className="border-t border-border-subtle bg-surface-muted text-foreground">
       <Container className="grid gap-12 py-16 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr] lg:py-24">
         <div>
-          <Logo variant="dark" height={34} />
+          <Logo variant="dark" height={52} />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-foreground/65">
             {dict.footer.tagline}
           </p>

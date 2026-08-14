@@ -80,7 +80,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
     >
       <Container className="flex h-20 items-center justify-between lg:h-24">
         <Link href={`/${locale}`}>
-          <Logo variant={transparent ? "light" : "dark"} height={30} />
+          <Logo variant={transparent ? "light" : "dark"} height={46} />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
