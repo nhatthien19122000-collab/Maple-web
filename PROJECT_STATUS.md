@@ -542,7 +542,15 @@ dance, but that wasn't investigated yet.
   3. `vercel --yes --prod --scope mapleweb`, then a real test submission against the
      live URL — `vercel logs` showed only the expected/harmless EROFS local-file
      error, no `sendInquiryEmail` error, confirming the send succeeded server-side.
-  Client asked to confirm receipt in both inboxes as the final check.
+  **✅ CONFIRMED RECEIVED 2026-08-14**: client's first live-site test appeared to go
+  nowhere (no error shown, per the `after()` design, but also no email seen) — turned
+  out to have landed in the Microsoft 365 Junk folder, expected for a brand-new
+  sending Gmail account with zero prior reputation talking to a new recipient
+  domain. A follow-up test (screenshot from Outlook) confirmed the email arrived
+  addressed to both "Lam Le" and "RnD" correctly. **Told the client to mark it "Not
+  Junk" in Outlook for both addresses** to build sender reputation and land in the
+  inbox going forward — worth reminding if spam complaints come up again. This
+  feature is now fully done end-to-end.
 - **Real PDFs added**: `public/downloads/maple-furniture-cabinet-brochure.pdf` and
   `maple-furniture-introduction-2026.pdf` (client-supplied, real) replaced the old
   AI-generated placeholder `maple-furniture-company-profile.pdf` (deleted). Contact
