@@ -524,24 +524,25 @@ dance, but that wasn't investigated yet.
   chose to fill `.env.local` themselves rather than share the password in chat
   (same self-service pattern as the earlier Office 365 attempt) — as of this
   writing `.env.local` has `GMAIL_USER` filled in but `GMAIL_APP_PASSWORD` blank.
-- **⚠️ NOT YET DEPLOYED TO VERCEL — this is the critical open item.** Code is
-  committed and pushed to GitHub (commit `f7f4b0b`), but `vercel --prod` has NOT
-  been run since this change, and Vercel's production env vars still only have the
-  old `RESEND_API_KEY`/`CONTACT_TO_EMAIL` (single address) from the previous setup.
-  **Do not deploy until:**
-  1. Client fills in `GMAIL_APP_PASSWORD` in local `.env.local` (or provides it) —
-     verify locally first with a real test submission before touching Vercel.
-  2. Add `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `CONTACT_TO_EMAIL` (both addresses) to
-     **Vercel → Production** via `vercel env add <name> production --scope
-     mapleweb` (remove/overwrite the old `RESEND_API_KEY` env var, no longer used
-     — leaving it doesn't hurt anything but it's dead weight).
-  3. `vercel --yes --prod --scope mapleweb`, then send a real test inquiry against
-     the live URL and confirm delivery to BOTH `lam@` and `Rnd@` before telling the
-     client it's done — deploying with the password missing would silently break
-     the contact form (same `after()` trade-off as before: client sees no error).
-  Verified locally 2026-08-13 that the code correctly throws/logs "Email is not
-  configured" server-side (not shown to the client) when `GMAIL_APP_PASSWORD` is
-  blank — confirms the code path works, just waiting on the real password.
+- **✅ DEPLOYED 2026-08-13 — done.** Client's first attempt at an app password
+  (`Maple_R&D_Team`) was a made-up string, not a real Google App Password — Gmail
+  rejected it (535 "Username and Password not accepted"), logged server-side only
+  (client wouldn't have seen this on the live site, per the `after()` trade-off).
+  Walked the client through: enabling 2-Step Verification at
+  myaccount.google.com/security (it existed but wasn't toggled on), then generating
+  a real App Password at myaccount.google.com/apppasswords (real ones are always 16
+  lowercase letters, shown grouped in 4s, e.g. `nksj buov cgiq jptg` — good tell for
+  spotting a fake one next time). Verified locally with the real password (no error
+  logged), then:
+  1. `vercel env rm CONTACT_TO_EMAIL production` and `RESEND_API_KEY` (both removed,
+     Resend fully retired)
+  2. Added `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `CONTACT_TO_EMAIL` (comma-separated,
+     both addresses) to Vercel Production via `vercel env add <name> production
+     --scope mapleweb`
+  3. `vercel --yes --prod --scope mapleweb`, then a real test submission against the
+     live URL — `vercel logs` showed only the expected/harmless EROFS local-file
+     error, no `sendInquiryEmail` error, confirming the send succeeded server-side.
+  Client asked to confirm receipt in both inboxes as the final check.
 - **Real PDFs added**: `public/downloads/maple-furniture-cabinet-brochure.pdf` and
   `maple-furniture-introduction-2026.pdf` (client-supplied, real) replaced the old
   AI-generated placeholder `maple-furniture-company-profile.pdf` (deleted). Contact
