@@ -41,7 +41,7 @@ export default async function FactoryPage({
         eyebrow={f.eyebrow}
         title={f.title}
         subtitle={f.subtitle}
-        image="/factory-1.jpg"
+        image="/factory-hero.jpg"
       />
 
       <section className="border-b border-border-subtle bg-surface">
@@ -76,7 +76,7 @@ export default async function FactoryPage({
           <Reveal delay={0.05}>
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
-                src="/factory-6.jpg"
+                src="/factory-cnc.jpg"
                 alt="Maple Furniture CNC production line"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -91,11 +91,11 @@ export default async function FactoryPage({
         <Container>
           <SectionHeading eyebrow={f.eyebrow} title={f.galleryTitle} align="center" />
           <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {["2", "3", "4", "5", "7", "8", "9", "10", "11", "12", "13", "14"].map((n, i) => (
+            {["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"].map((n, i) => (
               <Reveal key={n} delay={i * 0.03}>
                 <div className="relative aspect-square overflow-hidden rounded-xl">
                   <Image
-                    src={`/factory-${n}.jpg`}
+                    src={`/factory-${n}.png`}
                     alt="Maple Furniture factory"
                     fill
                     sizes="(min-width: 1024px) 25vw, 50vw"
@@ -138,7 +138,7 @@ export default async function FactoryPage({
           <Reveal>
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
-                src="/factory-15.jpg"
+                src="/factory-cta.jpg"
                 alt="Maple Furniture factory floor"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
