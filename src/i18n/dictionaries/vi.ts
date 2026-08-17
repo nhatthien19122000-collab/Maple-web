@@ -182,7 +182,7 @@ const vi: Dictionary = {
     eyebrow: "Dự Án",
     title: "Những Dấu Ấn Vượt Thời Gian",
     subtitle:
-      "Tuyển chọn các chương trình chung cư, khu dân cư cao tuổi, khách sạn, không gian công cộng và nhà ở cao cấp đã thực hiện cho các chủ đầu tư và thương hiệu khách sạn tại Hoa Kỳ, Canada, Úc và Châu Âu.",
+      "Tuyển chọn các chương trình chung cư, khu dân cư cao tuổi, khách sạn, không gian công cộng và nhà ở cao cấp đã thực hiện cho các chủ đầu tư và thương hiệu khách sạn tại Hoa Kỳ.",
     filterLabel: "Lọc theo hạng mục",
     detailScope: "Phạm Vi Dự Án",
     detailScale: "Quy Mô Dự Án",

@@ -181,7 +181,7 @@ const en = {
     eyebrow: "Portfolio",
     title: "Impressions That Endure",
     subtitle:
-      "A selection of multifamily, senior living, hospitality, public space, and luxury residential programs delivered for developers and hospitality brands across the USA, Canada, Australia, and Europe.",
+      "A selection of multifamily, senior living, hospitality, public space, and luxury residential programs delivered for developers and hospitality brands across the USA.",
     filterLabel: "Filter by category",
     detailScope: "Project Scope",
     detailScale: "Project Scale",
