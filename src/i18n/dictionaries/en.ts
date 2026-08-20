@@ -386,6 +386,7 @@ const en = {
     downloadBody: "Download our brochure and company introduction, including facility overview, capabilities, and past project references.",
     brochureCta: "Download Cabinet Brochure",
     introCta: "Download Company Introduction",
+    hospitalityCta: "Download Hospitality FF&E Brochure",
   },
   footer: {
     tagline: "Custom furniture for multifamily, senior living, hospitality, public space, and luxury residential programs — manufactured for export, finished by hand.",

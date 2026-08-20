@@ -387,6 +387,7 @@ const vi: Dictionary = {
     downloadBody: "Tải brochure và hồ sơ giới thiệu công ty của chúng tôi, bao gồm tổng quan cơ sở, năng lực sản xuất và các dự án tham chiếu.",
     brochureCta: "Tải Brochure Tủ Bếp",
     introCta: "Tải Hồ Sơ Giới Thiệu Công Ty",
+    hospitalityCta: "Tải Brochure FF&E Khách Sạn",
   },
   footer: {
     tagline: "Nội thất theo yêu cầu cho chung cư, khu dân cư cao tuổi, khách sạn, không gian công cộng và nhà ở cao cấp — sản xuất cho xuất khẩu, hoàn thiện thủ công.",

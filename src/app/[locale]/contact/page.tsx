@@ -136,6 +136,14 @@ export default async function ContactPage({
                     >
                       {c.introCta} →
                     </a>
+                    <a
+                      href="/downloads/maple-furniture-hospitality-ffe-brochure.pdf"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-block text-[0.75rem] font-medium uppercase tracking-[0.1em] text-accent hover:underline"
+                    >
+                      {c.hospitalityCta} →
+                    </a>
                   </div>
                 </div>
               </div>
