@@ -7,11 +7,11 @@ export const siteConfig = {
   phone: "(0084) 908 186 798",
   phoneRole: "CEO",
   whatsapp: "+84908186798",
-  address: "Lot 9, D4 Street, Chau Duc Industrial Park, Nghia Thanh Ward, Ho Chi Minh City, Vietnam, 790000",
+  address: "Lot 19, D4 Street, Chau Duc Industrial Park, Nghia Thanh Ward, Ho Chi Minh City, Vietnam, 790000",
   mapEmbedSrc:
-    "https://www.google.com/maps?q=Lot+9+D4+Street+Chau+Duc+Industrial+Park+Nghia+Thanh+Ward+Ho+Chi+Minh+City+Vietnam&output=embed",
+    "https://www.google.com/maps?q=Lot+19+D4+Street+Chau+Duc+Industrial+Park+Nghia+Thanh+Ward+Ho+Chi+Minh+City+Vietnam&output=embed",
   mapLinkSrc:
-    "https://www.google.com/maps/search/?api=1&query=Lot+9+D4+Street+Chau+Duc+Industrial+Park+Nghia+Thanh+Ward+Ho+Chi+Minh+City+Vietnam",
+    "https://www.google.com/maps/search/?api=1&query=Lot+19+D4+Street+Chau+Duc+Industrial+Park+Nghia+Thanh+Ward+Ho+Chi+Minh+City+Vietnam",
   social: {
     instagram: "https://instagram.com",
     linkedin: "https://linkedin.com",
