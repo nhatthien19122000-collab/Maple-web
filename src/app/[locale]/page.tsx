@@ -14,6 +14,14 @@ import { LinkArrow } from "@/components/ui/link-arrow";
 import { ProjectCard } from "@/components/projects/project-card";
 import { notFound } from "next/navigation";
 
+const clientLogos = [
+  { name: "Richelieu Hardware", logo: "/clients/richelieu.png" },
+  { name: "LevelOne Group", logo: "/clients/levelone-group.png" },
+  { name: "Northwest Trends", logo: "/clients/northwest-trends.png" },
+  { name: "Blum", logo: "/clients/blum.png" },
+  { name: "TransGlobal Imports", logo: "/clients/transglobal-imports.png" },
+];
+
 export default async function HomePage({
   params,
 }: {
@@ -100,7 +108,7 @@ export default async function HomePage({
             title={dict.home.capabilitiesTitle}
             subtitle={dict.home.capabilitiesSubtitle}
           />
-          <div className="mt-14 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
+          <div className="mt-14 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
             {capabilities.map((cap, i) => (
               <Reveal key={cap.key} delay={i * 0.06}>
                 <Link href={cap.href} className="group block">
@@ -135,7 +143,7 @@ export default async function HomePage({
             <SectionHeading eyebrow={dict.home.featuredEyebrow} title={dict.home.featuredTitle} />
             <LinkArrow href={`/${locale}/projects`}>{dict.common.viewAll}</LinkArrow>
           </div>
-          <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((project, i) => (
               <Reveal key={project.id} delay={i * 0.08}>
                 <ProjectCard project={project} locale={locale} dict={dict} priority={i === 0} />
@@ -167,6 +175,28 @@ export default async function HomePage({
           <Reveal delay={0.3} className="mt-12">
             <LinkArrow href={`/${locale}/manufacturing-process`}>{dict.common.learnMore}</LinkArrow>
           </Reveal>
+        </Container>
+      </section>
+
+      {/* Clients */}
+      <section className="border-t border-border-subtle bg-surface-muted py-24 lg:py-32">
+        <Container>
+          <SectionHeading eyebrow={dict.home.clientsEyebrow} title={dict.home.clientsTitle} align="center" />
+          <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
+            {clientLogos.map((client, i) => (
+              <Reveal key={client.name} delay={i * 0.05}>
+                <div className="flex h-32 items-center justify-center rounded-xl border border-border-subtle bg-surface p-6">
+                  <Image
+                    src={client.logo}
+                    alt={client.name}
+                    width={200}
+                    height={80}
+                    className="h-[3.9rem] w-auto object-contain"
+                  />
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </Container>
       </section>
 

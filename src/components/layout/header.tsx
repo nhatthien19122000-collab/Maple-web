@@ -52,6 +52,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         { href: `/${locale}/projects?category=hospitality`, label: dict.categories.hospitality },
         { href: `/${locale}/projects?category=publicSpaces`, label: dict.categories.publicSpaces },
         { href: `/${locale}/projects?category=luxuryResidential`, label: dict.categories.luxuryResidential },
+        { href: `/${locale}/projects?category=tambourWood`, label: dict.categories.tambourWood },
       ],
     },
     {

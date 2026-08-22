@@ -42,6 +42,7 @@ const en = {
     hospitality: "Hospitality",
     publicSpaces: "Public Spaces",
     luxuryResidential: "Luxury Residential",
+    tambourWood: "Wood Tambours",
   },
   categoryDescriptions: {
     multifamily: "Kitchen cabinetry and unit interiors engineered for large-scale apartment and condominium developments.",
@@ -49,6 +50,7 @@ const en = {
     hospitality: "Guestroom casegoods and F&B furniture for hotels, resorts, and restaurants.",
     publicSpaces: "Lobbies, lounges, clubhouses, and common-area furniture for hospitality and commercial properties.",
     luxuryResidential: "Bespoke cabinetry and furniture for high-end villas and premium private residences.",
+    tambourWood: "Grooved wood-veneer and solid-wood tambour panels engineered to curve around walls, ceilings, and cabinetry.",
   },
   home: {
     heroTitle: "Maple Furniture Limited Company",
@@ -62,9 +64,11 @@ const en = {
     statsSqm: "Factory Floor Area",
     statsYears: "Years of Manufacturing",
     capabilitiesEyebrow: "What We Build",
-    capabilitiesTitle: "Five Disciplines. One Standard of Craft.",
+    capabilitiesTitle: "Six Disciplines. One Standard of Craft.",
     capabilitiesSubtitle:
       "From residential cabinetry to full hotel fit-outs, every project runs through the same engineering, sourcing, and finishing rigor.",
+    clientsEyebrow: "Clients",
+    clientsTitle: "Brands We've Worked With",
     featuredEyebrow: "Selected Work",
     featuredTitle: "Recent Projects",
     processEyebrow: "How We Work",
@@ -99,6 +103,9 @@ const en = {
     capabilitiesBody:
       "Maple offers framed and frameless cabinetry, wood veneer collections, painted finishes, custom sizing, and OEM / ODM manufacturing support to meet a wide range of project needs.",
     closingTagline: "Crafted with purpose. Built with precision. Designed for modern spaces.",
+    teamEyebrow: "Leadership",
+    teamTitle: "Management Team",
+    teamSubtitle: "The people leading design, production, and quality across every Maple Furniture order.",
     capabilityTitle: "Export & Delivery Capability",
     capabilityBody:
       "Our logistics team manages FOB and CIF shipments worldwide, with dedicated container-loading engineering to protect finished goods in transit and on-site installation support for hotel and large-scale residential rollouts.",
@@ -163,6 +170,17 @@ const en = {
           "Solid timber & natural stone integration",
           "Built-in wardrobes & storage",
           "Full installation & handover",
+        ],
+      },
+      {
+        category: "tambourWood" as const,
+        title: "Wood Tambours",
+        body: "Grooved wood-veneer and solid-wood tambour panels engineered to curve around walls, ceilings, and cabinetry — produced as an OEM line for surfacing and hardware brands.",
+        points: [
+          "Wood veneer & solid wood slat construction",
+          "High-density MDF backing for flexible, curved installation",
+          "Maple, Red Oak, Walnut, and White Oak species",
+          "OEM production for surfacing & hardware brands",
         ],
       },
     ],

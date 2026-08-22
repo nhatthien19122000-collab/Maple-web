@@ -44,6 +44,7 @@ const vi: Dictionary = {
     hospitality: "Khách Sạn & F&B",
     publicSpaces: "Không Gian Công Cộng",
     luxuryResidential: "Nhà Ở Cao Cấp",
+    tambourWood: "Gỗ Tambour",
   },
   categoryDescriptions: {
     multifamily: "Tủ bếp và nội thất căn hộ được thiết kế kỹ thuật cho các dự án chung cư và căn hộ quy mô lớn.",
@@ -51,6 +52,7 @@ const vi: Dictionary = {
     hospitality: "Nội thất phòng khách sạn và nội thất F&B cho khách sạn, khu nghỉ dưỡng và nhà hàng.",
     publicSpaces: "Sảnh, phòng chờ, khu sinh hoạt chung cho các dự án khách sạn và thương mại.",
     luxuryResidential: "Tủ và nội thất theo yêu cầu cho biệt thự và nhà ở tư nhân cao cấp.",
+    tambourWood: "Tấm gỗ tambour dạng rãnh (veneer và gỗ tự nhiên) được thiết kế để uốn cong quanh tường, trần và tủ.",
   },
   home: {
     heroTitle: "Maple Furniture Limited Company",
@@ -64,9 +66,11 @@ const vi: Dictionary = {
     statsSqm: "Diện Tích Nhà Máy",
     statsYears: "Năm Kinh Nghiệm Sản Xuất",
     capabilitiesEyebrow: "Chúng Tôi Sản Xuất",
-    capabilitiesTitle: "Năm Lĩnh Vực. Một Tiêu Chuẩn Tay Nghề.",
+    capabilitiesTitle: "Sáu Lĩnh Vực. Một Tiêu Chuẩn Tay Nghề.",
     capabilitiesSubtitle:
       "Từ tủ bếp nhà ở đến toàn bộ nội thất khách sạn, mỗi dự án đều tuân theo cùng một quy trình kỹ thuật, tìm nguồn nguyên liệu và hoàn thiện nghiêm ngặt.",
+    clientsEyebrow: "Khách Hàng",
+    clientsTitle: "Thương Hiệu Đã & Đang Hợp Tác",
     featuredEyebrow: "Dự Án Tiêu Biểu",
     featuredTitle: "Dự Án Gần Đây",
     processEyebrow: "Cách Chúng Tôi Làm Việc",
@@ -101,6 +105,9 @@ const vi: Dictionary = {
     capabilitiesBody:
       "Maple cung cấp tủ khung và tủ liền khối (frameless), bộ sưu tập veneer gỗ tự nhiên, hoàn thiện sơn màu, tùy chỉnh kích thước và hỗ trợ sản xuất OEM/ODM để đáp ứng đa dạng nhu cầu dự án.",
     closingTagline: "Chế tác có mục đích. Xây dựng bằng độ chính xác. Thiết kế cho không gian hiện đại.",
+    teamEyebrow: "Ban Lãnh Đạo",
+    teamTitle: "Đội Ngũ Quản Lý",
+    teamSubtitle: "Những con người dẫn dắt thiết kế, sản xuất và chất lượng cho mọi đơn hàng của Maple Furniture.",
     capabilityTitle: "Năng Lực Xuất Khẩu & Giao Hàng",
     capabilityBody:
       "Đội ngũ logistics của chúng tôi quản lý các lô hàng FOB và CIF trên toàn thế giới, với kỹ thuật xếp container chuyên biệt để bảo vệ thành phẩm trong quá trình vận chuyển, cùng hỗ trợ lắp đặt tại công trình cho các dự án khách sạn và nhà ở quy mô lớn.",
@@ -165,6 +172,17 @@ const vi: Dictionary = {
           "Kết hợp gỗ tự nhiên & đá tự nhiên",
           "Tủ quần áo & tủ âm tường theo yêu cầu",
           "Lắp đặt & bàn giao hoàn chỉnh",
+        ],
+      },
+      {
+        category: "tambourWood",
+        title: "Gỗ Tambour",
+        body: "Tấm gỗ tambour dạng rãnh (veneer và gỗ tự nhiên) được thiết kế để uốn cong quanh tường, trần và tủ — sản xuất OEM cho các thương hiệu phụ kiện và bề mặt nội thất.",
+        points: [
+          "Cấu tạo từ thanh gỗ veneer & gỗ tự nhiên",
+          "Lớp nền MDF mật độ cao, uốn cong linh hoạt khi lắp đặt",
+          "Các loại gỗ Maple, Red Oak, Walnut, White Oak",
+          "Sản xuất OEM cho thương hiệu bề mặt & phụ kiện nội thất",
         ],
       },
     ],

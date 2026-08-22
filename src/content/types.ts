@@ -8,7 +8,8 @@ export type ProjectCategory =
   | "seniorLiving"
   | "hospitality"
   | "publicSpaces"
-  | "luxuryResidential";
+  | "luxuryResidential"
+  | "tambourWood";
 
 export interface Project {
   id: string;
@@ -24,6 +25,7 @@ export interface Project {
   scale?: LocalizedText;
   materials: LocalizedText;
   coverImage: string;
+  bannerImage?: string;
   images: string[];
   featured?: boolean;
 }

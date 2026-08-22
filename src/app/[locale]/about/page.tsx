@@ -10,6 +10,29 @@ import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { LinkArrow } from "@/components/ui/link-arrow";
 
+const managementTeam = [
+  {
+    photo: "/team/ceo-founder.png",
+    title: { en: "CEO, Founder & Head of Business Development", vi: "CEO, Nhà Sáng Lập & Trưởng Phòng Phát Triển Kinh Doanh" },
+  },
+  { photo: "/team/head-of-finance.png", title: { en: "Head of Finance", vi: "Trưởng Phòng Tài Chính" } },
+  { photo: "/team/head-of-manufacturing.png", title: { en: "Head of Manufacturing", vi: "Trưởng Phòng Sản Xuất" } },
+  {
+    photo: "/team/head-of-finishing-qc.png",
+    title: { en: "Head of Finishing & QC", vi: "Trưởng Phòng Hoàn Thiện & Kiểm Soát Chất Lượng" },
+  },
+  { photo: "/team/head-of-rd.jpg", title: { en: "Head of R&D", vi: "Trưởng Phòng Nghiên Cứu & Phát Triển" } },
+  {
+    photo: "/team/head-of-accounting-hr.png",
+    title: { en: "Head of Accounting & HR", vi: "Trưởng Phòng Kế Toán & Nhân Sự" },
+  },
+  { photo: "/team/head-of-procurement.png", title: { en: "Head of Procurement", vi: "Trưởng Phòng Thu Mua" } },
+  {
+    photo: "/team/head-of-customer-service.png",
+    title: { en: "Head of Customer Service", vi: "Trưởng Phòng Chăm Sóc Khách Hàng" },
+  },
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -84,6 +107,34 @@ export default async function AboutPage({
               />
             </div>
           </Reveal>
+        </Container>
+      </section>
+
+      <section className="border-t border-border-subtle bg-surface-muted py-24 lg:py-32">
+        <Container>
+          <SectionHeading
+            eyebrow={a.teamEyebrow}
+            title={a.teamTitle}
+            subtitle={a.teamSubtitle}
+            align="center"
+            className="max-w-4xl"
+          />
+          <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-4">
+            {managementTeam.map((member, i) => (
+              <Reveal key={member.title.en} delay={i * 0.05}>
+                <div className="relative aspect-square overflow-hidden rounded-2xl bg-surface">
+                  <Image
+                    src={member.photo}
+                    alt={member.title[locale]}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+                <p className="mt-4 text-sm font-medium leading-snug text-foreground/85">{member.title[locale]}</p>
+              </Reveal>
+            ))}
+          </div>
         </Container>
       </section>
 

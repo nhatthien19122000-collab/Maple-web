@@ -48,7 +48,7 @@ export default async function ProjectDetailPage({
     <>
       <section className="relative flex min-h-[70vh] items-end overflow-hidden pt-32">
         <Image
-          src={project.coverImage}
+          src={project.bannerImage ?? project.coverImage}
           alt={project.title[locale]}
           fill
           priority

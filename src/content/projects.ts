@@ -6,6 +6,7 @@ export const projectCategories: { value: ProjectCategory; labelKey: ProjectCateg
   { value: "hospitality", labelKey: "hospitality" },
   { value: "publicSpaces", labelKey: "publicSpaces" },
   { value: "luxuryResidential", labelKey: "luxuryResidential" },
+  { value: "tambourWood", labelKey: "tambourWood" },
 ];
 
 // Fallback cover photo per category, used for real projects that don't yet have a
@@ -16,6 +17,7 @@ const categoryFallbackImage: Record<ProjectCategory, string> = {
   hospitality: "/cap-hospitality.png",
   publicSpaces: "/cap-publicspaces.jpg",
   luxuryResidential: "/cap-luxuryresidential.png",
+  tambourWood: "/cap-tambourwood.png",
 };
 
 // Builds an ordered gallery from client-supplied photos named
@@ -126,6 +128,24 @@ const categoryContent: Record<
       vi: "Gỗ tự nhiên & veneer, hoàn thiện theo yêu cầu.",
     },
   },
+  tambourWood: {
+    summary: () => ({
+      en: "OEM production of grooved wood-veneer and solid-wood tambour panels for a surfacing hardware brand.",
+      vi: "Sản xuất OEM tấm gỗ tambour dạng rãnh (veneer và gỗ tự nhiên) cho thương hiệu phụ kiện nội thất.",
+    }),
+    description: () => ({
+      en: "Maple Furniture manufactures grooved wood-veneer and solid-wood tambour panels on a high-density MDF backing, engineered to curve around walls, ceilings, and cabinetry for hospitality, commercial, and residential interiors.",
+      vi: "Maple Furniture sản xuất tấm gỗ tambour dạng rãnh (veneer và gỗ tự nhiên) trên lớp nền MDF mật độ cao, được thiết kế để uốn cong quanh tường, trần và tủ, ứng dụng cho không gian khách sạn, thương mại và nhà ở.",
+    }),
+    scope: {
+      en: ["Wood veneer & solid wood tambour production", "High-density MDF backing lamination", "OEM packaging & export"],
+      vi: ["Sản xuất tấm gỗ tambour veneer & gỗ tự nhiên", "Dán lớp nền MDF mật độ cao", "Đóng gói OEM & xuất khẩu"],
+    },
+    materials: {
+      en: "Wood veneer or solid wood slats (Maple, Red Oak, Walnut, White Oak) on high-density MDF backing.",
+      vi: "Thanh gỗ veneer hoặc gỗ tự nhiên (Maple, Red Oak, Walnut, White Oak) trên lớp nền MDF mật độ cao.",
+    },
+  },
 };
 
 function buildProject(input: {
@@ -134,7 +154,9 @@ function buildProject(input: {
   category: ProjectCategory;
   name: string;
   location?: string;
+  client?: string;
   coverImage?: string;
+  bannerImage?: string;
   images?: string[];
   featured?: boolean;
   year?: number;
@@ -142,7 +164,7 @@ function buildProject(input: {
   scope?: LocalizedList;
   scale?: LocalizedText;
 }): Project {
-  const { id, slug, category, name, location, coverImage, images, featured, year, description, scope, scale } = input;
+  const { id, slug, category, name, location, client, coverImage, bannerImage, images, featured, year, description, scope, scale } = input;
   const content = categoryContent[category];
   const gallery = images ?? (coverImage ? [coverImage] : [categoryFallbackImage[category]]);
   const cover = coverImage ?? gallery[0];
@@ -153,6 +175,7 @@ function buildProject(input: {
     category,
     title: { en: name, vi: name },
     location,
+    client,
     year,
     summary: content.summary(location),
     description: description ?? content.description(location),
@@ -160,6 +183,7 @@ function buildProject(input: {
     scale,
     materials: content.materials,
     coverImage: cover,
+    bannerImage,
     images: gallery,
     featured,
   };
@@ -456,6 +480,25 @@ export const projects: Project[] = [
     name: "Weston Residence",
     location: "Washington, USA",
     images: projectGallery("sean-residence", ["png", "jpg", "jpg", "jpg", "jpg"]),
+  }),
+
+  // ---------- Tambour Wood ----------
+  buildProject({
+    id: "p21",
+    slug: "richelieu-decortambour",
+    category: "tambourWood",
+    name: "Wood Tambours",
+    client: "Richelieu Hardware",
+    coverImage: "/project-richelieu-decortambour-cover.png",
+    bannerImage: "/project-richelieu-decortambour-banner.png",
+    images: projectGallery("richelieu-decortambour", [
+      "png", "png", "png", "png", "png", "png", "png", "png", "png",
+    ]),
+    description: {
+      en: "Maple Furniture manufactures the DécorTambour line for Richelieu Hardware — grooved wood-veneer and solid-wood tambour panels finished on a high-density MDF backing.\n\nThe grooved construction lets each panel curve around walls, ceilings, and cabinetry, giving architects and designers a decorative surface for reception areas, hospitality interiors, and residential feature walls that standard flat panels can't achieve.\n\nAvailable in Maple, Red Oak, Walnut, and White Oak, the panels ship sanded and unfinished, ready for the specifier's own stain or oil-based finish.",
+      vi: "Maple Furniture sản xuất dòng sản phẩm DécorTambour cho Richelieu Hardware — tấm gỗ tambour dạng rãnh (veneer và gỗ tự nhiên) hoàn thiện trên lớp nền MDF mật độ cao.\n\nCấu trúc dạng rãnh giúp mỗi tấm có thể uốn cong quanh tường, trần và tủ, mang đến bề mặt trang trí cho sảnh lễ tân, không gian khách sạn và tường điểm nhấn nhà ở mà tấm phẳng thông thường không làm được.\n\nCó sẵn các loại gỗ Maple, Red Oak, Walnut và White Oak, tấm xuất xưởng ở dạng chà nhám, chưa hoàn thiện, sẵn sàng để phủ màu hoặc sơn dầu theo yêu cầu.",
+    },
+    featured: true,
   }),
 ];
 
