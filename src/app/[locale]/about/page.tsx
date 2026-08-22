@@ -13,22 +13,34 @@ import { LinkArrow } from "@/components/ui/link-arrow";
 const managementTeam = [
   {
     photo: "/team/ceo-founder.png",
+    name: "Lam Le",
     title: { en: "CEO, Founder & Head of Business Development", vi: "CEO, Nhà Sáng Lập & Trưởng Phòng Phát Triển Kinh Doanh" },
   },
-  { photo: "/team/head-of-finance.png", title: { en: "Head of Finance", vi: "Trưởng Phòng Tài Chính" } },
-  { photo: "/team/head-of-manufacturing.png", title: { en: "Head of Manufacturing", vi: "Trưởng Phòng Sản Xuất" } },
+  { photo: "/team/head-of-finance.png", name: "Binh Thai", title: { en: "Head of Finance", vi: "Trưởng Phòng Tài Chính" } },
+  {
+    photo: "/team/head-of-manufacturing.png",
+    name: "Trieu Cao",
+    title: { en: "Head of Manufacturing", vi: "Trưởng Phòng Sản Xuất" },
+  },
   {
     photo: "/team/head-of-finishing-qc.png",
+    name: "Sim Nguyen",
     title: { en: "Head of Finishing & QC", vi: "Trưởng Phòng Hoàn Thiện & Kiểm Soát Chất Lượng" },
   },
-  { photo: "/team/head-of-rd.jpg", title: { en: "Head of R&D", vi: "Trưởng Phòng Nghiên Cứu & Phát Triển" } },
+  { photo: "/team/head-of-rd.jpg", name: "Thorin Sieu", title: { en: "Head of R&D", vi: "Trưởng Phòng Nghiên Cứu & Phát Triển" } },
   {
     photo: "/team/head-of-accounting-hr.png",
+    name: "Trang Bui",
     title: { en: "Head of Accounting & HR", vi: "Trưởng Phòng Kế Toán & Nhân Sự" },
   },
-  { photo: "/team/head-of-procurement.png", title: { en: "Head of Procurement", vi: "Trưởng Phòng Thu Mua" } },
+  {
+    photo: "/team/head-of-procurement.png",
+    name: "Hien Nguyen",
+    title: { en: "Head of Procurement", vi: "Trưởng Phòng Thu Mua" },
+  },
   {
     photo: "/team/head-of-customer-service.png",
+    name: "Tram Dinh",
     title: { en: "Head of Customer Service", vi: "Trưởng Phòng Chăm Sóc Khách Hàng" },
   },
 ];
@@ -131,7 +143,14 @@ export default async function AboutPage({
                     className="object-cover"
                   />
                 </div>
-                <p className="mt-4 text-sm font-medium leading-snug text-foreground/85">{member.title[locale]}</p>
+                {member.name ? (
+                  <>
+                    <p className="mt-4 font-serif text-base leading-snug">{member.name}</p>
+                    <p className="mt-1 text-sm leading-snug text-foreground/60">{member.title[locale]}</p>
+                  </>
+                ) : (
+                  <p className="mt-4 text-sm font-medium leading-snug text-foreground/85">{member.title[locale]}</p>
+                )}
               </Reveal>
             ))}
           </div>
